@@ -1,0 +1,46 @@
+@import "../../variables";
+
+.advantages {
+  width: 100%;
+  background: url('../custom/img/decor/bg-triangle.svg') center no-repeat;
+  background-size: 100% 100%;
+  padding: 64px 0 104px 0;
+  @include e(wrapper) {
+    width: map_get($desktop-sizes, 'wrapper');
+    margin: 0 auto;
+  }
+  @include e(title) {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: $dark-lighten;
+    margin: 0 0 45px 0;
+    text-transform: uppercase;
+  }
+  @include b(list) {
+    width: 100%;
+    @include reset('ul');
+    display: flex;
+    justify-content: space-around;
+    @include b(item) {
+      width: 33.3333%;
+      text-align: center;
+      @include e(title) {
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+      }
+      @include e(secondary-text) {
+        font-weight: 700;
+        font-size: 20px;
+        color: $dark-lighten;
+      }
+      @include e(primary-text) {
+        font-weight: 700;
+        font-size: 40px;
+        color: $primary;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import "../../variables";
+
+.main-slider {
+  width: 100%;
+  position: relative;
+  @at-root {
+    & .dots-container {
+      width: 100%;
+      position: absolute;
+      bottom: 43px;
+      text-align: center;
+      & > .dot {
+        user-select: none;
+        display: inline-block;
+        width: 21px;
+        height: 21px;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+        transition: background .1s ease-in-out;
+        &.active {
+          background: $dark-lighten;
+        }
+        &:not(:last-child) {
+          margin: 0 29px 0 0;
+        }
+      }
+    }
+  }
+  @include e(container) {
+    width: 100%;
+    height: 500px;
+
+  }
+  @include b(item) {
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transition: padding 1s ease-in-out, opacity 1s ease-in-out, visibility 1s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    &.active {
+      visibility: visible;
+      opacity: 1;
+      & > .main-slider-item__wrapper {
+        padding: 20px 0 20px 29px;
+      }
+    }
+
+    @include e(wrapper) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: map_get($desktop-sizes, 'wrapper');
+      position: relative;
+      margin: 0 auto;
+      height: 100%;
+      padding: 20px 0 20px 129px;
+      transition: padding 1s ease;
+      color: #fff;
+      & > h1, h2 {
+        text-transform: uppercase;
+      }
+      & > h1 {
+        font-weight: 800;
+        font-size: 60px;
+      }
+      & > h2 {
+        font-weight: 700;
+        font-size: 40px;
+      }
+    }
+    @include e(btn) {
+
+    }
+  }
+}

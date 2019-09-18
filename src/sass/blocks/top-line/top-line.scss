@@ -1,0 +1,231 @@
+@import "../../variables";
+
+.top-line {
+  width: 100%;
+  background: $dark-lighten;
+  padding: 0;
+  @include e(wrapper) {
+    width: map_get($desktop-sizes, 'wrapper');
+    margin: 0 auto;
+    display: flex;
+  }
+  @include b(nav) {
+    @include reset();
+    @include b(list) {
+      display: flex;
+      align-items: center;
+      @include reset('ul');
+      margin: 0;
+      padding: 0;
+      @include b(item) {
+        height: 60px;
+        display: flex;
+        user-select: none;
+        align-items: center;
+        @include reset();
+        position: relative;
+        font-weight: 700;
+        font-size: 18px;
+        &:not(:last-child) {
+          margin: 0 21px 0 0;
+        }
+        @include e(link) {
+          display: flex;
+          @include reset('a');
+          color: #fff;
+        }
+        @include e(non-link) {
+          display: flex;
+          @include reset();
+          color: #fff;
+          cursor: pointer;
+        }
+        @include m(parent) {
+          & > .top-line-nav-list-item__non-link:after, & > .top-line-nav-list-item__non-link:after {
+            content: "\f0d7";
+            display: flex;
+            align-items: center;
+            font-family: "Font Awesome 5 Pro";
+            font-weight: 900;
+            font-size: 12px;
+            margin-left: 7px;
+            color: #fff;
+            transition: transform .2s ease-out;
+          }
+          &:hover {
+            & > .top-line-nav-list-children {
+              visibility: visible;
+              opacity: 1;
+            }
+            & > .top-line-nav-list-item__non-link, & > .top-line-nav-list-item__link {
+
+              &:after {
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+      }
+    }
+    @include b(list-children) {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility .1s ease-in-out, opacity .3s ease-in-out;
+      top: 100%;
+      left: 0;
+      background: $dark-lighten-more;
+      flex: 1;
+      @include reset('ul');
+      margin: 0;
+      padding: 14px;
+      @include b(item) {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        @include reset();
+        position: relative;
+        font-weight: 700;
+        font-size: 18px;
+        &:not(:last-child) {
+          margin: 0 0 7px 0;
+        }
+        @include e(link) {
+          @include reset('a');
+          color: #fff;
+        }
+        @include e(non-link) {
+          @include reset();
+          color: #fff;
+        }
+        @include m(parent) {
+          &:after {
+            content: "\f0d7";
+            display: flex;
+            align-items: center;
+            font-family: "Font Awesome 5 Pro";
+            font-weight: 900;
+            font-size: 12px;
+            margin-left: 7px;
+            color: #fff;
+          }
+          & > .top-line-nav-list-children {
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+  @include e(other) {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  @include b(search) {
+    @include reset();
+    position: relative;
+    @include e(result) {
+      position: absolute;
+      background: $dark-lighten-more;
+      color: $input-placeholder;
+      font-weight: 300;
+      top: 100%;
+      left: 0;
+      width: calc(100% - 36px);
+      & > p {
+        border-top: 1px solid $dark-lighten;
+        padding: 7px;
+        margin: 0;
+      }
+    }
+    @include b(form) {
+      @include e(box) {
+        height: 60px;
+        width: 243px;
+        display: flex;
+        position: relative;
+        overflow: hidden;
+      }
+      @include e(icon) {
+        user-select: none;
+        pointer-events: none;
+        position: absolute;
+        left: 19px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: $input-placeholder;
+        opacity: .5;
+        transition: opacity .25s ease-in-out, left .35s ease-in-out;
+        display: flex;
+        align-items: center;
+        & > svg {
+          height: 18px;
+          width: 18px;
+        }
+        & > span {
+          white-space: nowrap;
+          margin: 0 0 0 12px;
+        }
+      }
+
+      @include e(input) {
+        height: 100%;
+        width: 100%;
+        border: 0;
+        color: $input-placeholder;
+        font-size: 18px;
+        padding: 0 55px 0 19px;
+        @include reset('input');
+        background: $dark-lighten-more;
+        &:focus {
+          & + .top-line-search-form__submit {
+            right: 0;
+          }
+          & ~ .top-line-search-form__icon {
+            left: 150%;
+            opacity: 0;
+          }
+        }
+        &:valid {
+          & + .top-line-search-form__submit {
+            right: 0;
+          }
+          & ~ .top-line-search-form__icon {
+            left: 150%;
+            opacity: 0;
+          }
+        }
+      }
+      @include e(submit) {
+        position: absolute;
+        cursor: pointer;
+        right: -50%;
+        top: 0;
+        height: 100%;
+        color: $input-placeholder;
+        @include reset('button');
+        border: 0;
+        background: $primary;
+        width: 54px;
+        transition: opacity .15s ease-in-out, right .35s ease-in-out, background .2s ease-in-out;
+        & > svg {
+          margin: 0 auto;
+          height: 18px;
+          width: 18px;
+        }
+        &:hover {
+          background: #EF6C00;
+        }
+      }
+    }
+  }
+  @include b(sign-in) {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin: 0 41px 0 0;
+    @include e(link) {}
+  }
+}

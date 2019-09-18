@@ -1,0 +1,81 @@
+@import "../variables";
+
+.c-link {
+  font-weight: 700;
+  position: relative;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  &:hover {
+    &:after {
+      background: transparent;
+    }
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 4px;
+    background: #fff;
+    transition: background .1s ease-in-out;
+  }
+  @include m(primary) {
+    color: $primary;
+    &:after {
+      background: $primary;
+    }
+    &:hover {
+      &:after {
+        background: transparent;
+      }
+    }
+  }
+}
+
+.c-btn {
+  padding: 0 40px;
+  background: $primary;
+  border: 0;
+  @include reset('button');
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 6px;
+  line-height: 50px;
+  transition: background .2s ease-in-out;
+  &:hover {
+    background: #EF6C00;
+  }
+  @include m(small) {
+    line-height: 47px;
+    font-size: 18px;
+    border-radius: 4px;
+    text-transform: none;
+    padding: 0 12px;
+  }
+}
+
+.c-btn-ghost {
+  display: inline-block;
+  padding: 0 60px;
+  line-height: 52px;
+  background: transparent;
+  transition: background .2s ease-in-out, color .2s ease-in-out;
+  border: 4px solid #fff;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  &:hover {
+    background: #fff;
+    color: $primary;
+  }
+}
