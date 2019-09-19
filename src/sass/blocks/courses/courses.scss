@@ -1,0 +1,180 @@
+@import "../../variables";
+
+.courses {
+  width: 100%;
+  background: #fafafa;
+  @include e(wrapper) {
+    width: 100%;
+    margin: 0 auto;
+    padding: 88px 0 74px 0;
+  }
+  @include e(title) {
+    font-size: 30px;
+    color: $dark-lighten;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 60px 0;
+  }
+  @include b(block) {
+    display: flex;
+    align-items: stretch;
+
+
+    @include b(left-nav) {
+      margin: 0 113px 0 0;
+      padding: 0 0 0 10%;
+      @include b(list) {
+        @include reset('ul');
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        @include e(item) {
+          user-select: none;
+          white-space: nowrap;
+          line-height: 37px;
+          font-size: 18px;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: $dark-lighten;
+          position: relative;
+          transition: color .1s ease-in-out, font-weight .1s ease-in-out;
+          cursor: pointer;
+          &:not(:last-child) {
+            margin: 0 0 20px 0;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            background: transparent;
+            transition: background .1s ease-in-out, font-size .1s ease-in-out;
+          }
+          &:hover {
+            color: $primary;
+            &:after {
+              background: $primary;
+            }
+          }
+          @include m(active) {
+            font-weight: 800;
+            color: $primary;
+            cursor: auto;
+            &:after {
+              background: $primary;
+            }
+          }
+        }
+      }
+    }
+    @include b(main) {
+
+      @include b(top-nav) {
+
+        @include b(list) {
+          display: flex;
+          @include reset('ul');
+          @include e(item) {
+            white-space: nowrap;
+            font-size: 18px;
+            user-select: none;
+            color: #444444;
+            position: relative;
+            transition: color .1s ease-in-out, font-weight .1s ease-in-out;
+            cursor: pointer;
+            &:not(:last-child) {
+              margin: 0 32px 0 0;
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 3px;
+              left: 0;
+              bottom: 0;
+              background: transparent;
+              transition: background .1s ease-in-out, font-size .1s ease-in-out;
+            }
+            &:hover {
+              color: $primary;
+              &:after {
+                background: $primary;
+              }
+            }
+            @include m(active) {
+              font-weight: 700;
+              color: $primary;
+              cursor: auto;
+              &:after {
+                background: $primary;
+              }
+            }
+          }
+        }
+      }
+      @include b(content) {
+        flex: 1;
+        overflow: hidden;
+        @include b(items) {
+          width: 100%;
+          @include b(one) {
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            transform: translateX(-100%);
+            @include m(active) {
+              transform: translateX(0);
+            }
+            @include e(image) {
+              position: absolute;
+              width: 55%;
+              right: 0;
+              bottom: 0;
+              height: 100%;
+              background-size: contain;
+              background-position: left bottom;
+              background-repeat: no-repeat;
+            }
+            @include b(info) {
+              width: 100%;
+              padding: 34px 55% 74px 0;
+              @include e(description) {
+                font-weight: 300;
+                color: #444444;
+                margin: 0 0 20px 0;
+              }
+              @include e(secondary) {
+                display: block;
+                font-weight: 300;
+                color: #444444;
+                margin: 0 0 30px 0;
+              }
+              @include b(list) {
+                @include reset('ul');
+                margin: 0 0 42px 0;
+                @include b(item) {
+                  @include e(icon) {
+                    font-size: 18px;
+                    line-height: 27px;
+                    margin: 0 20px 0 0;
+                    width: 23px;
+                    text-align: center;
+                    color: $primary;
+                  }
+                  @include e(link) {
+                    line-height: 27px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

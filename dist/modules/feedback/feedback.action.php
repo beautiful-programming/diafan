@@ -21,6 +21,7 @@ if (! defined('DIAFAN'))
 	include $path.'/includes/404.php';
 }
 
+
 class Feedback_action extends Action
 {	
 	/**

@@ -20,6 +20,7 @@ const gulp = require('gulp'),
     debug = require('gulp-debug'),
     browsersync = require('browser-sync').create(),
     clean = require('gulp-clean'),
+    UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
     config = {
         src: './src/',
         dist: './dist/',
@@ -28,6 +29,7 @@ const gulp = require('gulp'),
         sass: config.src + 'sass/style.scss',
         allSass: config.src + 'sass/**/*.scss',
         js: config.src + 'js/**/*.js',
+        jsApp: config.src + 'js/custom.js',
         img: config.src + 'img/**/*.*'
     },
     dist = {
@@ -73,7 +75,7 @@ let img = () => {
                 max: 80,
                 min: 70
             }),
-            gulpPngQuant({quality: '80'}),
+            gulpPngQuant({quality: [0.65,0.8]}),
             gulpImagemin.svgo({plugins: [{removeViewBox: false}]})
         ]))
         .pipe(gulp.dest(dist.img));
@@ -98,7 +100,7 @@ let sass = () => {
         }))
         .pipe(gulpSourcemaps.write('./'))
         .pipe(gulp.dest(dist.sass))
-        .pipe(browsersync.reload({stream:true}))
+        .pipe(browsersync.reload({stream: true}))
 };
 
 let jsLint = () => {
@@ -110,24 +112,78 @@ let jsLint = () => {
         .pipe(eslint.failAfterError());
 };
 
+// let js = () => {
+//     return gulp.src(['node_modules/babel-polyfill/dist/polyfill.js', src.js])
+//         .pipe(gulpSourcemaps.init())
+//         .pipe(plumber({errorHandler: onError}))
+//         .pipe(babel({
+//             presets: ['@babel/preset-env'],
+//             plugins: ["syntax-async-functions","transform-regenerator"]
+//         }))
+//         .pipe(gulpUglify())
+//         .pipe(gulpRename({suffix: '.min'}))
+//         .pipe(gulpSourcemaps.write('.'))
+//         .pipe(gulp.dest(dist.js));
+// };
+
+// require("babel-polyfill");
+
+const path = require('path');
+
 let js = () => {
-    return gulp.src(['node_modules/babel-polyfill/dist/polyfill.js', src.js])
-        .pipe(gulpSourcemaps.init())
+    return gulp.src(src.jsApp, {read: false})
         .pipe(plumber({errorHandler: onError}))
-        .pipe(babel({
-            presets: ['@babel/preset-env'],
-            plugins: ["syntax-async-functions","transform-regenerator"]
-        }))
-        .pipe(gulpUglify())
-        .pipe(gulpRename({suffix: '.min'}))
-        .pipe(gulpSourcemaps.write('.'))
+        .pipe(webpackStream({
+        entry: src.jsApp,
+            output: {
+            filename: 'custom.js'
+            },
+        optimization: {
+            minimizer: [
+                new UglifyJsPlugin({
+                    cache: true,
+                    parallel: true,
+                    uglifyOptions: {
+                        compress: true,
+                        ecma: 6,
+                        mangle: true
+                    },
+                    sourceMap: true
+                })
+            ],
+        },
+        mode: 'production',
+        module: {
+            rules: [
+                {
+                    test: /\.(js)$/,
+                    exclude: /(node_modules)/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ["@babel/preset-env"],
+                        plugins: [
+                            [
+                                "@babel/plugin-transform-runtime",
+                                {
+                                    "absoluteRuntime": false,
+                                    "corejs": false,
+                                    "helpers": true,
+                                    "regenerator": true,
+                                    "useESModules": false
+                                }
+                            ]
+                        ]
+                    }
+                }
+            ]
+        },
+    }))
         .pipe(gulp.dest(dist.js));
 };
 
 let watchFiles = () => {
     gulp.watch(src.allSass, gulp.series(sass));
     gulp.watch(src.js, gulp.series(js));
-    // gulp.watch(src.img, gulp.series(img));
 };
 
 const watch = gulp.parallel(watchFiles, browserSync);

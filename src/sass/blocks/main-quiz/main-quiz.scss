@@ -9,9 +9,15 @@
     margin: 0 auto;
     position: relative;
   }
-  @include e(box) {
+  @include b(box) {
     width: 100%;
     padding: 67px 0 56px 0;
+    @include e(wrapper) {
+      height: 300px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
   }
   @include e(title) {
     width: 100%;
@@ -20,11 +26,109 @@
     color: #fff;
     text-transform: uppercase;
   }
-  @include b(form) {
+  @include b(end) {
+    position: absolute;
+    height: 100%;
     width: 100%;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
+    top: 100%;
+    left: 0;
+    transition: top .5s ease-out;
+    @include b(links) {
+      padding: 14px 0 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 100%;
+      transition: top .5s ease-out;
+      @include e(more-details) {
+        margin: 0 auto;
+      }
+      @include m(hidden) {
+        top: -100%;
+        & + .main-quiz-end-details {
+          top: 0;
+        }
+      }
+      @include b(list) {
+        width: 100%;
+        list-style-position: inside;
+        display: block;
+        color: #fff;
+        text-align: center;
+        @include e(item) {
+          > a {
+            color: #fff;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    @include b(details) {
+      padding: 14px 0 0 0;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 100%;
+      left: 0;
+      display: flex;
+      align-items: center;
+      transition: top .5s ease-out .15s;
+      @include b(form) {
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        & > form {
+          width: 100%;
+        }
+        input:not([type=submit]) {
+          margin: 0 0 20px 0;
+        }
+        @include e(text) {
+          width: 100%;
+          line-height: 50px;
+          border: 1px solid $grey;
+          font-size: 20px;
+          padding: 0 19px;
+          color: $dark-lighten;
+          border-radius: 6px;
+          outline: 0;
+        }
+        @include e(tel) {
+          width: 100%;
+          line-height: 50px;
+          border: 1px solid $grey;
+          font-size: 20px;
+          padding: 0 19px;
+          color: $dark-lighten;
+          border-radius: 6px;
+          outline: 0;
+        }
+
+        @include e(submit) {
+          margin: 20px auto 0 auto;
+        }
+      }
+    }
+  }
+  @include b(form) {
+    position: absolute;
+    padding: 14px 0 0 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: top .5s ease-out .35s;
+    @include m(completed) {
+      top: -100%;
+      & + .main-quiz-end {
+        top: 0;
+      }
+    }
     @include b(question) {
       border: 0;
       position: absolute;
@@ -32,12 +136,20 @@
       height: 100%;
       left: 0;
       top: 100%;
-      transition: top .3s ease-in;
+      transition: top .5s ease-out;
+      @include e(btn) {
+        margin: 0 auto;
+        transition: opacity .2s ease-in-out .1s;
+      }
       @include m(active) {
         top: 0;
+        transition: top .5s ease-out .15s;
       }
       @include m(completed) {
         top: -100%;
+        & > .main-quiz-form-question__wrapper > .main-quiz-form-question__btn {
+          opacity: 0;
+        }
       }
       @include e(radios) {
         display: flex;
@@ -57,7 +169,6 @@
       @include e(title) {
         width: 100%;
         text-align: center;
-        margin: 14px 0 0 0;
         color: #fff;
         font-size: 20px;
       }
@@ -96,13 +207,14 @@
         -1px 1px 0 #828282,
         1px 1px 0 #828282;
         color: #fff;
-        transition: transfrom .2s ease-in-out, border-color .2s ease-in-out, color .15s ease-in-out, text-shadow .1s ease-in-out;
+        transition: border-color .2s ease-in-out, color .15s ease-in-out, text-shadow .1s ease-in-out;
         @include m(error) {
-          transform: scale(3) !important;
           border-color: #953b39 !important;
-          color:  #953b39 !important;;
+          color:  #953b39 !important;
+          text-shadow: none;
         }
       }
+
       @include e(item) {
         position: absolute;
         top: 0;
@@ -117,10 +229,6 @@
           }
         }
       }
-      @include e(btn) {
-        margin: 0 auto;
-      }
-
     }
   }
   @include b(dots) {
@@ -139,7 +247,7 @@
       transform: translateX(-50%);
       height: 100%;
       width: 0;
-      border-left: 1px dashed $grey-light;
+      border-left: 1.6px dashed $grey-light;
     }
     @include b(list) {
       display: flex;

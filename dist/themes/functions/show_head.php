@@ -91,7 +91,7 @@ echo '</title>
 <meta content="'.$this->diafan->_('English', false).'" name="language">
 <meta content="DIAFAN.CMS http'.(IS_HTTPS ? "s" : '').'://www.diafan.ru/" name="author">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="';
 echo $this->functions('show_description', array());
 echo '">
@@ -126,4 +126,3 @@ if(in_array('visitors', $this->diafan->installed_modules))
 	}
 }
 ?>
-<script src="https://kit.fontawesome.com/3c2825fddc.js"></script>
