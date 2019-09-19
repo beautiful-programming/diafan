@@ -21,7 +21,7 @@ define("REVATIVE_PATH", '');
 define("TIT1", 'Лингвистический клуб');
 
 //параметры подключения к БД
-define("DB_URL", 'mysqli://root@localhost/diafan');
+define("DB_URL", 'mysqli://u0605_web:12345Qwe@spl77.hosting.reg.ru/u0605727_web');
 
 //префикс таблиц сайта в БД
 define("DB_PREFIX", 'diafan_');

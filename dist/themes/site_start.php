@@ -150,179 +150,23 @@ if (!defined("DIAFAN")) {
         </ul>
         </div>
     </section>
-    <insert name="show_block" module="votes">
         <article class="main-quiz">
             <div class="main-quiz__wrapper">
+                <div class="main-quiz-dots">
+                    <ul class="main-quiz-dots-list">
+                        <li class="main-quiz-dots-list__item main-quiz-dots-list__item--active" data-number-dot="1">1</li>
+                        <li class="main-quiz-dots-list__item" data-number-dot="2">2</li>
+                        <li class="main-quiz-dots-list__item" data-number-dot="3">3</li>
+                        <li class="main-quiz-dots-list__item" data-number-dot="4">4</li>
+                        <li class="main-quiz-dots-list__item" data-number-dot="5">5</li>
+                        <li class="main-quiz-dots-list__item" data-number-dot="6">6</li>
+                        <li class="main-quiz-dots-list__item" data-number-dot="7">7</li>
+                    </ul>
+                </div>
                 <div class="main-quiz__box">
                     <h1 class="main-quiz__title">Подбор курса за 5 минут</h1>
-                    <form id="formForTest" class="main-quiz-form">
-                        <fieldset class="main-quiz-form-question main-quiz-form-question--active" data-number-question="1">
-                            <div class="main-quiz-form-question__wrapper">
-                            <legend class="main-quiz-form-question__title"
-                                    data-question-title="Как на данный момент происходит фиксация клиентской базы?">
-                                Какой язык хотите учить?
-                            </legend>
-                            <div class="main-quiz-form-question__radios">
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-1-eng" value="Английский">
-                                <label for="quiz-1-question-1-eng" class="main-quiz-form-radio__label">Английский</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-1-es" value="Испанский">
-                                <label for="quiz-1-question-1-es"
-                                       class="main-quiz-form-radio__label">Испанский</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-1-fr" value="Французский">
-                                <label for="quiz-1-question-1-fr"
-                                       class="main-quiz-form-radio__label">Французский</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-1-de" value="Немецкий">
-                                <label for="quiz-1-question-1-de"
-                                       class="main-quiz-form-radio__label">Немецкий</label></div>
-                                <div class="main-quiz-form-radio">
-                                    <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                           id="quiz-1-question-1-ru" value="Русский">
-                                    <label for="quiz-1-question-1-ru"
-                                           class="main-quiz-form-radio__label">Русский</label></div>
-                                <div class="main-quiz-form-radio">
-                                    <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                           id="quiz-1-question-1-zh" value="Китайский">
-                                    <label for="quiz-1-question-1-zh"
-                                           class="main-quiz-form-radio__label">Китайский</label></div>
-                                <div class="main-quiz-form-radio">
-                                    <input type="radio" name="quiz-1-question-1" class="main-quiz-form-radio__item"
-                                           id="quiz-1-question-1-it" value="Итальянский">
-                                    <label for="quiz-1-question-1-it"
-                                           class="main-quiz-form-radio__label">Итальянский</label></div>
-                            </div>
-                            <button class="c-btn main-quiz-form-radio__btn">Следующий вопрос</button>
-                            </div>
-                        </fieldset>
+                    <form id="formForMainQuiz" class="main-quiz-form">
 
-                        <fieldset class="main-quiz-form-question" data-number-question="2">
-                            <legend class="main-quiz-form-question__title"
-                                    data-question-title="Был ли у вас опыт работы с CRM?">Был ли у вас опыт
-                                работы с
-                                CRM?
-                            </legend>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-2" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-2-yes" value="Да">
-                                <label for="quiz-1-question-2-yes" class="main-quiz-form-radio__label">Да</label>
-                            </div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-2" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-2-no" value="Нет">
-                                <label for="quiz-1-question-2-no" class="main-quiz-form-radio__label">Нет</label>
-                            </div>
-                        </fieldset>
-                        <fieldset class="main-quiz-form-question" data-number-question="3">
-                            <legend class="main-quiz-form-question__title"
-                                    data-question-title="Сколько сотрудников будут пользоваться CRM?">
-                                Сколько
-                                сотрудников будут пользоваться CRM?
-                            </legend>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-3" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-3-oneOrTwo" value="1-2">
-                                <label for="quiz-1-question-3-oneOrTwo"
-                                       class="main-quiz-form-radio__label">1-2</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-3" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-3-threeOrFive" value="3-5">
-                                <label for="quiz-1-question-3-threeOrFive"
-                                       class="main-quiz-form-radio__label">3-5</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-3" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-3-sixOrFiveteen" value="6-15">
-                                <label for="quiz-1-question-3-sixOrFiveteen"
-                                       class="main-quiz-form-radio__label">6-15</label>
-                            </div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-3" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-3-fiveteenTwentyFiveteen" value="15-25">
-                                <label for="quiz-1-question-3-fiveteenTwentyFiveteen"
-                                       class="main-quiz-form-radio__label">15-25</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-3" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-3-twentyFiveteen" value="25-50">
-                                <label for="quiz-1-question-3-twentyFiveteen"
-                                       class="main-quiz-form-radio__label">25-50</label>
-                            </div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-3" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-3-overOfFifty" value=">50">
-                                <label for="quiz-1-question-3-overOfFifty" class="main-quiz-form-radio__label">Больше
-                                    50</label></div>
-                        </fieldset>
-                        <fieldset class="main-quiz-form-question" data-number-question="4">
-                            <legend class="main-quiz-form-question__title"
-                                    data-question-title="Какую телефонию вы используете?">Какую телефонию вы
-                                используете?
-                            </legend>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-4" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-4-cell" value="Сотовые операторы">
-                                <label for="quiz-1-question-4-cell" class="main-quiz-form-radio__label">Сотовые
-                                    операторы</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-4" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-4-ip" value="IP телефония">
-                                <label for="quiz-1-question-4-ip" class="main-quiz-form-radio__label">IP
-                                    телефония</label></div>
-                        </fieldset>
-                        <fieldset class="main-quiz-form-question" data-number-question="5">
-                            <legend class="main-quiz-form-question__title"
-                                    data-question-title="Какое количество номеров используете для рекламы?">
-                                Какое
-                                количество номеров используете для рекламы?
-                            </legend>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-5" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-5-personal" value="Только личные">
-                                <label for="quiz-1-question-5-personal" class="main-quiz-form-radio__label">Только
-                                    личные</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-5" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-5-oneJob" value="Один (общий) рабочий">
-                                <label for="quiz-1-question-5-oneJob" class="main-quiz-form-radio__label">Один
-                                    (общий) рабочий</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-5" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-5-fewNubmers"
-                                       value="Несколько номеров, но указываем их везде">
-                                <label for="quiz-1-question-5-fewNubmers" class="main-quiz-form-radio__label">Несколько
-                                    номеров, но
-                                    указываем
-                                    их везде</label></div>
-                            <div class="main-quiz-form-radio">
-                                <input type="radio" name="quiz-1-question-5" class="main-quiz-form-radio__item"
-                                       id="quiz-1-question-5-moreNumbers"
-                                       value="Для каждого рекламного канала отдельный номер">
-                                <label for="quiz-1-question-5-moreNumbers" class="main-quiz-form-radio__label">Для
-                                    каждого рекламного
-                                    канала
-                                    отдельный номер</label></div>
-                        </fieldset>
-                        <fieldset class="main-quiz-form-question" data-number-question="6" data-quiz-last="yes">
-                            <legend class="main-quiz-form-question__title"
-                                    data-question-title="Контактная информация">Контактная информация
-                            </legend>
-                            <div class="amotema-f__form-group">
-                                <label for="quiz-1-question-6-name" class="amotema-f__label">Имя</label>
-                                <input id="quiz-1-question-6-name" required="" class="amotema-f__input" type="text"
-                                       name="name" placeholder="Иванов Иван Иванович"></div>
-                            <div class="amotema-f__form-group">
-                                <label for="quiz-1-question-6-telephone" class="amotema-f__label">Телефон</label>
-                                <input id="quiz-1-question-6-telephone" required="" class="amotema-f__input" type="tel"
-                                       name="telephone" placeholder="+7 (123) 456-78-90"></div>
-                            <button type="button" class="amotema-f__button main-quiz-submit" id="quiz-1-submit">
-                                Отправить
-                            </button>
-                        </fieldset>
                     </form>
                 </div>
             </div>

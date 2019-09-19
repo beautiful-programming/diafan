@@ -111,11 +111,12 @@ let jsLint = () => {
 };
 
 let js = () => {
-    return gulp.src(src.js)
+    return gulp.src(['node_modules/babel-polyfill/dist/polyfill.js', src.js])
         .pipe(gulpSourcemaps.init())
         .pipe(plumber({errorHandler: onError}))
         .pipe(babel({
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: ["syntax-async-functions","transform-regenerator"]
         }))
         .pipe(gulpUglify())
         .pipe(gulpRename({suffix: '.min'}))

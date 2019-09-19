@@ -7,6 +7,7 @@
   @include e(wrapper) {
     width: map_get($desktop-sizes, 'wrapper');
     margin: 0 auto;
+    position: relative;
   }
   @include e(box) {
     width: 100%;
@@ -121,6 +122,54 @@
       }
 
     }
+  }
+  @include b(dots) {
+    position: absolute;
+    right: 63px;
+    top: 50%;
+    z-index: 999;
+    transform: translateY(-50%);
+    $grey-light: #4F4F4F;
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 0;
+      border-left: 1px dashed $grey-light;
+    }
+    @include b(list) {
+      display: flex;
+      flex-direction: column;
+      @include reset('ul');
+      @include e(item) {
+        z-index: 2;
+        width: 24px;
+        line-height: 24px;
+        background: $grey-light;
+        display: inline-block;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: 700;
+        user-select: none;
+        color: #fff;
+        transition: background .15s ease-in-out;
+        &:not(:last-child) {
+          margin: 0 0 20px 0;
+        }
+        @include m(active) {
+          background: $primary;
+        }
+        @include m(completed) {
+          background: lighten($dark-lighten, 5%);
+        }
+      }
+    }
+
   }
 }
 
