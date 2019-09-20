@@ -6,7 +6,7 @@
   background-size: 100% 100%;
   padding: 64px 0 104px 0;
   @include e(wrapper) {
-    width: map_get($desktop-sizes, 'wrapper');
+    @include media($grid-width);
     margin: 0 auto;
   }
   @include e(title) {

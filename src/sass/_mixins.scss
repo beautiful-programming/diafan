@@ -1,9 +1,11 @@
 $breakpoints: (
+        xl: 1226,
         lg: 1024,
         md: 768,
-        sm: 640
+        sm: 576,
+        xs: 240
 ) !default;
-$media-direction: max !default;
+$media-direction: min !default;
 
 @mixin css_property($property, $value) {
   @if type_of($value) == string {

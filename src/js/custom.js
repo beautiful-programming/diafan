@@ -1,5 +1,7 @@
 'use strict';
 
+import WOW from 'wow.js';
+
 const makeID = (length) => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
@@ -31,7 +33,7 @@ async function initMainQuiz() {
         },
         quiz = $('.main-quiz');
 
-    if (quiz) {
+    if (quiz.length) {
         const box = $(quiz).find('.main-quiz-form'),
             wrapper = $(quiz).find('.main-quiz__wrapper');
         let html = '',
@@ -60,22 +62,8 @@ async function initMainQuiz() {
         $(box).append(html);
         $(wrapper).append(htmlDot);
     }
-}
 
-const getCoursesLinks = () => {
-    return [
-        'Курс «Деловой английский»',
-        'Курс «Деловой английский»',
-        'Курс «Деловой английский»',
-    ]
-};
-
-$(document).ready(() => {
-    initMainQuiz().catch(error => {
-        throw new Error('mainQuiz not load');
-    });
-
-    $('.main-quiz').on('click', '.main-quiz-form-question__btn', function (e) {
+    $(quiz).on('click', '.main-quiz-form-question__btn', function (e) {
         e.preventDefault();
         const parentQuestion = $(this).closest('.main-quiz-form-question');
 
@@ -121,8 +109,76 @@ $(document).ready(() => {
             });
         }
 
-    }).on('click', '.main-quiz-end-links__more-details', function() {
+    }).on('click', '.main-quiz-end-links__more-details', function () {
         const parent = $(this).closest('.main-quiz-end');
         $(parent).find('.main-quiz-end-links').addClass('main-quiz-end-links--hidden');
     });
+}
+
+function scrollToElement(el = $('body')) {
+    $(el).scrollTop($(el).offset().top);
+}
+
+async function initEventsCoursesBlock() {
+    const coursesBlock = $('.courses');
+
+    if (coursesBlock.length) {
+        $(coursesBlock).on('click', '.courses-block-left-nav-list__item', function () {
+            const thisActiveNumber = $(this).attr('data-course-nav-left'),
+                topActiveNumber = $('.courses-block-main-top-nav-list__item--active', coursesBlock).attr('data-course-nav-top'),
+                activeLeftNav = $('.courses-block-left-nav-list__item--active', coursesBlock),
+                activeContent = $('.courses-block-main-content-items-one--active', coursesBlock),
+                newActiveContent = $('.courses-block-main-content-items-one[data-course-left="' + thisActiveNumber + '"][data-course-top="' + topActiveNumber + '"]', coursesBlock);
+
+            $(this).addClass('courses-block-left-nav-list__item--active');
+            $(activeLeftNav).removeClass('courses-block-left-nav-list__item--active');
+            $(activeContent).removeClass('courses-block-main-content-items-one--active');
+            $(newActiveContent).addClass('courses-block-main-content-items-one--active');
+            scrollToElement(coursesBlock);
+        });
+
+        $(coursesBlock).on('click', '.courses-block-main-top-nav-list__item', function () {
+            const thisActiveNumber = $(this).attr('data-course-nav-top'),
+                leftActiveNumber = $('.courses-block-left-nav-list__item--active', coursesBlock).attr('data-course-nav-left'),
+                activeTopNav = $('.courses-block-main-top-nav-list__item--active', coursesBlock),
+                activeContent = $('.courses-block-main-content-items-one--active', coursesBlock),
+                newActiveContent = $('.courses-block-main-content-items-one[data-course-top="' + thisActiveNumber + '"][data-course-left="' + leftActiveNumber + '"]', coursesBlock);
+
+            $(this).addClass('courses-block-main-top-nav-list__item--active');
+            $(activeTopNav).removeClass('courses-block-main-top-nav-list__item--active');
+            $(activeContent).removeClass('courses-block-main-content-items-one--active');
+            $(newActiveContent).addClass('courses-block-main-content-items-one--active');
+            scrollToElement(coursesBlock);
+        });
+    }
+}
+
+
+const getCoursesLinks = () => {
+    return [
+        'Курс «Деловой английский»',
+        'Курс «Деловой английский»',
+        'Курс «Деловой английский»',
+    ]
+};
+
+$(document).ready(() => {
+    new WOW().init();
+    initMainQuiz().catch(error => {
+        throw new Error('mainQuiz not load');
+    });
+    initEventsCoursesBlock().catch(error => {
+        throw new Error('coursesBlock error');
+    });
+    // os.on('enter', '.learning-benefits-list', (element, event) => {
+    //     element.style.backgroud = 'red';
+    //     $('.learning-benefits-list-item', element).each(function (index) {
+    //         setTimeout(function () {
+    //             $(this).removeClass('learning-benefits-list-item--hidden');
+    //         }, 175 * index);
+    //     });
+    //     os.off('leave', '.learning-benefits-list');
+    // });
 });
+
+

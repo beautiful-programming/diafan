@@ -7,6 +7,6 @@ $primary: #FF7B15;
 $input-placeholder: #dadada;
 $grey: #828282;
 
-$desktop-sizes: (
-  wrapper: 1196px
+$grid-width: (
+        width: (xs-md: 100%, md: 750px, lg: 992px, xl: 1196px)
 );

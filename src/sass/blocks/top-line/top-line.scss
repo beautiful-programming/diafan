@@ -5,7 +5,7 @@
   background: $dark-lighten;
   padding: 0;
   @include e(wrapper) {
-    width: map_get($desktop-sizes, 'wrapper');
+    @include media($grid-width);
     margin: 0 auto;
     display: flex;
   }
@@ -25,7 +25,9 @@
         @include reset();
         position: relative;
         font-weight: 700;
-        font-size: 18px;
+        @include media((
+            font-size: (lg: 16px, xl: 18px)
+        ));
         &:not(:last-child) {
           margin: 0 21px 0 0;
         }
@@ -161,8 +163,10 @@
         display: flex;
         align-items: center;
         & > svg {
-          height: 18px;
-          width: 18px;
+          @include media((
+                  width: (lg: 16px, xl: 18px),
+                  height: (lg: 16px, xl: 18px)
+          ));
         }
         & > span {
           white-space: nowrap;
@@ -175,7 +179,9 @@
         width: 100%;
         border: 0;
         color: $input-placeholder;
-        font-size: 18px;
+        @include media((
+                font-size: (lg: 16px, xl: 18px)
+        ));
         padding: 0 55px 0 19px;
         @include reset('input');
         background: $dark-lighten-more;
@@ -226,6 +232,10 @@
     display: flex;
     align-items: center;
     margin: 0 41px 0 0;
-    @include e(link) {}
+    @include e(link) {
+      @include media((
+              font-size: (lg: 16px)
+      ));
+    }
   }
 }

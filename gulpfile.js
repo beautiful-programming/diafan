@@ -134,7 +134,7 @@ let js = () => {
     return gulp.src(src.jsApp, {read: false})
         .pipe(plumber({errorHandler: onError}))
         .pipe(webpackStream({
-        entry: src.jsApp,
+        entry: ['@babel/polyfill', src.jsApp],
             output: {
             filename: 'custom.js'
             },
