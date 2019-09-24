@@ -52,7 +52,7 @@ async function initMainQuiz() {
                 }
                 let currentID = makeID(8);
                 html += `<div class="main-quiz-form-radio">
-<input type="radio" name="question-${index + 1}" class="main-quiz-form-radio__item" id="question-1-${currentID}" value="${answer}">
+<input type="radio" name="question-${key + 1}" class="main-quiz-form-radio__item" id="question-1-${currentID}" value="${answer}">
 <label for="question-1-${currentID}" class="main-quiz-form-radio__label">${answer}</label></div>`;
             });
             html += '</div><button class="c-btn main-quiz-form-question__btn">Следующий вопрос</button></div></fieldset>';
@@ -135,9 +135,7 @@ async function initEventsCoursesBlock() {
             $(activeContent).removeClass('courses-block-main-content-items-one--active');
             $(newActiveContent).addClass('courses-block-main-content-items-one--active');
             scrollToElement(coursesBlock);
-        });
-
-        $(coursesBlock).on('click', '.courses-block-main-top-nav-list__item', function () {
+        }).on('click', '.courses-block-main-top-nav-list__item', function () {
             const thisActiveNumber = $(this).attr('data-course-nav-top'),
                 leftActiveNumber = $('.courses-block-left-nav-list__item--active', coursesBlock).attr('data-course-nav-left'),
                 activeTopNav = $('.courses-block-main-top-nav-list__item--active', coursesBlock),
@@ -149,6 +147,39 @@ async function initEventsCoursesBlock() {
             $(activeContent).removeClass('courses-block-main-content-items-one--active');
             $(newActiveContent).addClass('courses-block-main-content-items-one--active');
             scrollToElement(coursesBlock);
+        }).on('click', '#coursesLeftNavBtnLeft', function () {
+            const thisActiveNav = $('.courses-block-left-nav-list__item--active', coursesBlock).attr('data-course-nav-left'),
+                topActiveNumber = $('.courses-block-main-top-nav-list__item--active', coursesBlock).attr('data-course-nav-top'),
+                activeContent = $('.courses-block-main-content-items-one--active', coursesBlock),
+                maxNavItems = $('.courses-block-left-nav-list__item', coursesBlock).length;
+
+            let newActiveNav = 0;
+
+            ((+thisActiveNav - 1) === 0 ? newActiveNav = maxNavItems : newActiveNav = (+thisActiveNav - 1));
+
+            const newActiveContent = $('.courses-block-main-content-items-one[data-course-left="' + newActiveNav + '"][data-course-top="' + topActiveNumber + '"]', coursesBlock);
+
+            $('.courses-block-left-nav-list__item--active', coursesBlock).removeClass('courses-block-left-nav-list__item--active');
+            $('.courses-block-left-nav-list__item[data-course-nav-left="' + newActiveNav + '"]', coursesBlock).addClass('courses-block-left-nav-list__item--active');
+            $(activeContent).removeClass('courses-block-main-content-items-one--active');
+            $(newActiveContent).addClass('courses-block-main-content-items-one--active');
+        }).on('click', '#coursesLeftNavBtnRight', function () {
+            const thisActiveNav = $('.courses-block-left-nav-list__item--active', coursesBlock).attr('data-course-nav-left'),
+                topActiveNumber = $('.courses-block-main-top-nav-list__item--active', coursesBlock).attr('data-course-nav-top'),
+                activeContent = $('.courses-block-main-content-items-one--active', coursesBlock),
+                maxNavItems = $('.courses-block-left-nav-list__item', coursesBlock).length;
+
+            let newActiveNav = 0;
+
+            ((+thisActiveNav + 1) > maxNavItems ? newActiveNav = 1 : newActiveNav = (+thisActiveNav + 1));
+
+
+            const newActiveContent = $('.courses-block-main-content-items-one[data-course-left="' + newActiveNav + '"][data-course-top="' + topActiveNumber + '"]', coursesBlock);
+
+            $('.courses-block-left-nav-list__item--active', coursesBlock).removeClass('courses-block-left-nav-list__item--active');
+            $('.courses-block-left-nav-list__item[data-course-nav-left="' + newActiveNav + '"]', coursesBlock).addClass('courses-block-left-nav-list__item--active');
+            $(activeContent).removeClass('courses-block-main-content-items-one--active');
+            $(newActiveContent).addClass('courses-block-main-content-items-one--active');
         });
     }
 }
@@ -163,22 +194,38 @@ const getCoursesLinks = () => {
 };
 
 $(document).ready(() => {
-    new WOW().init();
+    const wow = new WOW(
+        {
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: false,
+            live: true
+        }
+    );
+    wow.init();
     initMainQuiz().catch(error => {
         throw new Error('mainQuiz not load');
     });
     initEventsCoursesBlock().catch(error => {
         throw new Error('coursesBlock error');
     });
-    // os.on('enter', '.learning-benefits-list', (element, event) => {
-    //     element.style.backgroud = 'red';
-    //     $('.learning-benefits-list-item', element).each(function (index) {
-    //         setTimeout(function () {
-    //             $(this).removeClass('learning-benefits-list-item--hidden');
-    //         }, 175 * index);
-    //     });
-    //     os.off('leave', '.learning-benefits-list');
-    // });
+    $('body').on('click', '#mobileMenuOpen', function () {
+        const menu = $('.top-line-menu__wrapper');
+
+        if (menu.length) {
+            $(menu).addClass('top-line-menu__wrapper--open');
+            $('body').addClass('no-scroll');
+        }
+    }).on('click', '#mobileMenuClose', function () {
+        const menu = $('.top-line-menu__wrapper');
+
+        if (menu.length) {
+            $(menu).removeClass('top-line-menu__wrapper--open');
+            $('body').removeClass('no-scroll');
+        }
+    });
+
 });
 
 

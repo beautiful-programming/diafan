@@ -4,7 +4,9 @@
   width: 100%;
   background: url('../custom/img/decor/bg-triangle.svg') center no-repeat;
   background-size: 100% 100%;
-  padding: 64px 0 104px 0;
+  @include media((
+      padding: (xs-lg_1: 42px 0 104px 0, lg: 64px 0 104px 0)
+  ));
   @include e(wrapper) {
     @include media($grid-width);
     margin: 0 auto;
@@ -12,7 +14,9 @@
   @include e(title) {
     width: 100%;
     text-align: center;
-    font-size: 40px;
+    @include media((
+        font-size: (xs-lg_1: 25px, lg: 40px)
+    ));
     font-weight: 700;
     color: $dark-lighten;
     margin: 0 0 45px 0;
@@ -22,9 +26,18 @@
     width: 100%;
     @include reset('ul');
     display: flex;
-    justify-content: space-around;
+    @include media((
+        flex-direction: (xs-lg_1: column),
+    ));
     @include b(item) {
-      width: 33.3333%;
+      @include media((
+          width: (xs-lg_1: 100%, lg: 33.3333%)
+      ));
+      &:not(:last-child) {
+        @include media((
+                margin: (xs-lg_1: 0 0 30px 0)
+        ));
+      }
       text-align: center;
       @include e(title) {
         text-transform: uppercase;

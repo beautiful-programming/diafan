@@ -1,5 +1,11 @@
 @import "../../variables";
 
+@keyframes visibleSubMenu {
+  0% {
+
+  }
+}
+
 .top-line {
   width: 100%;
   background: $dark-lighten;
@@ -9,38 +15,141 @@
     margin: 0 auto;
     display: flex;
   }
+  @include b(phone) {
+    @include media((
+        display: (xs-lg_1: flex, lg: none)
+    ));
+    @include media((
+            height: (xs-lg_1: 50px, lg: 60px)
+    ));
+    align-items: center;
+    @include e(number) {
+      color: #ffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      @include media((
+          margin: (xs-sm_1: 0 0 0 10px, sm: 0 0 0 20px)
+      ));
+    }
+
+  }
+
+  @include b(menu) {
+    @include media((
+        height: (xs-lg_1: 50px, lg: 60px),
+            display: (xs-lg_1: flex),
+    align-items: (xs-lg_1: center)
+    ));
+
+    @include e(wrapper) {
+      transition: opacity .3s ease-in-out, visibility 0s ease-in-out .3s;
+      @include media((
+              visibility: (xs-lg_1: hidden),
+
+        position: (xs-lg_1: fixed),
+              width: (xs-lg_1: 100%),
+              height: (xs-lg_1: 100%),
+              background: (xs-lg_1: #fff),
+              z-index: (xs-lg_1: 999999),
+              left: (xs-lg_1: 0),
+              top: (xs-lg_1: 0),
+              opacity: (xs-lg_1: 0),
+              padding: (xs-lg_1: 150px 60px 50px 60px)
+      ));
+      @include m(open) {
+        visibility: visible !important;
+        opacity: 1 !important;
+        overflow-y: auto;
+      }
+    }
+    @include e(close) {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      display: block;
+      @include media((
+              display: (lg: none)
+      ));
+    }
+    @include e(burger) {
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      @include media((
+          display: (lg: none)
+      ));
+      > svg {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
   @include b(nav) {
-    @include reset();
+    @include m(mobile) {
+      margin: 70px 0 0 0;
+      @include media((
+          display: (lg: none),
+      ));
+      & .top-line-nav-list-item__non-link, & .top-line-nav-list-item__link {
+        @include media((
+                text-transform: (xs-lg_1: uppercase),
+                font-weight: (xs-lg_1: 700),
+                color: (xs-lg_1: $dark-lighten)
+        ));
+      }
+    }
     @include b(list) {
       display: flex;
+      @include media((
+              flex-direction: (xs-lg_1: column),
+              align-items: (xs-lg_1: flex-start)
+      ));
       align-items: center;
       @include reset('ul');
       margin: 0;
       padding: 0;
       @include b(item) {
-        height: 60px;
         display: flex;
         user-select: none;
         align-items: center;
+        overflow: hidden;
         @include reset();
         position: relative;
         font-weight: 700;
         @include media((
-            font-size: (lg: 16px, xl: 18px)
+            font-size: (xs-lg_1: 18px, lg-xl_1: 16px, xl: 18px),
+                height: (lg: 60px),
+                font-weight: (xs-lg_1: 400),
+                flex-direction: (xs-lg_1: column),
+                align-items: (xs-lg_1: flex-start)
         ));
         &:not(:last-child) {
-          margin: 0 21px 0 0;
+          @include media((
+              margin: (xs-lg_1: 0 0 20px 0, lg: 0 21px 0 0)
+          ));
         }
         @include e(link) {
           display: flex;
           @include reset('a');
           color: #fff;
+          @include media((
+              color: (xs-lg_1: $dark-lighten)
+          ));
         }
         @include e(non-link) {
           display: flex;
           @include reset();
           color: #fff;
           cursor: pointer;
+          @include media((
+                  color: (xs-lg_1: $dark-lighten)
+          ));
         }
         @include m(parent) {
           & > .top-line-nav-list-item__non-link:after, & > .top-line-nav-list-item__non-link:after {
@@ -51,16 +160,28 @@
             font-weight: 900;
             font-size: 12px;
             margin-left: 7px;
+            @include media((
+                    color: (xs-lg_1: $dark-lighten)
+            ));
             color: #fff;
             transition: transform .2s ease-out;
           }
-          &:hover {
-            & > .top-line-nav-list-children {
-              visibility: visible;
-              opacity: 1;
-            }
-            & > .top-line-nav-list-item__non-link, & > .top-line-nav-list-item__link {
 
+          &:hover {
+            @include media((
+                color: (xs-lg_1: $primary)
+            ));
+            & > .top-line-nav-list-children {
+              opacity: 1;
+              @include media((
+                      visibility: (lg: visible),
+                      padding: (xs-lg_1: 24px 14px 4px 24px),
+                      max-height: (xs-lg_1: 400px),
+                      transform: (xs-lg_1: translate(0, 0))
+              ));
+            }
+
+            & > .top-line-nav-list-item__non-link, & > .top-line-nav-list-item__link {
               &:after {
                 transform: rotate(180deg);
               }
@@ -70,6 +191,15 @@
       }
     }
     @include b(list-children) {
+      @include media((
+          position: (xs-lg_1: relative),
+              visibility: (xs-lg_1: visible),
+              background: (xs-lg_1: #fff),
+              padding: (xs-lg_1: 0),
+              max-height: (xs-lg_1: 0),
+              overflow: (xs-lg_1: hidden),
+              transform: (xs-lg_1: translate(0, -50%))
+      ));
       position: absolute;
       visibility: hidden;
       opacity: 0;
@@ -88,6 +218,9 @@
         @include reset();
         position: relative;
         font-weight: 700;
+        @include media((
+                font-weight: (xs-lg_1: 400)
+        ));
         font-size: 18px;
         &:not(:last-child) {
           margin: 0 0 7px 0;
@@ -95,10 +228,16 @@
         @include e(link) {
           @include reset('a');
           color: #fff;
+          @include media((
+                  color: (xs-lg_1: $dark-lighten)
+          ));
         }
         @include e(non-link) {
           @include reset();
           color: #fff;
+          @include media((
+                  color: (xs-lg_1: $dark-lighten)
+          ));
         }
         @include m(parent) {
           &:after {
@@ -110,6 +249,9 @@
             font-size: 12px;
             margin-left: 7px;
             color: #fff;
+            @include media((
+                    color: (xs-lg_1: $dark-lighten)
+            ));
           }
           & > .top-line-nav-list-children {
             position: absolute;
@@ -125,6 +267,9 @@
     justify-content: flex-end;
   }
   @include b(search) {
+    @include media((
+        display: (xs-lg_1: none)
+    ));
     @include reset();
     position: relative;
     @include e(result) {
@@ -143,7 +288,9 @@
     }
     @include b(form) {
       @include e(box) {
-        height: 60px;
+        @include media((
+            height: (xs-lg_1: 50px, lg: 60px)
+        ));
         width: 243px;
         display: flex;
         position: relative;
@@ -164,8 +311,8 @@
         align-items: center;
         & > svg {
           @include media((
-                  width: (lg: 16px, xl: 18px),
-                  height: (lg: 16px, xl: 18px)
+                  width: (xs-lg_1: 16px, lg: 18px),
+                  height: (xs-lg_1: 16px, lg: 18px)
           ));
         }
         & > span {
@@ -180,7 +327,7 @@
         border: 0;
         color: $input-placeholder;
         @include media((
-                font-size: (lg: 16px, xl: 18px)
+                font-size: (xs-lg_1: 16px, lg: 18px)
         ));
         padding: 0 55px 0 19px;
         @include reset('input');
@@ -228,13 +375,15 @@
     }
   }
   @include b(sign-in) {
-    height: 60px;
+    @include media((
+        height: (xs-lg_1: 50px, lg: 60px),
+            margin: (lg-xl_1: 0 36px 0 0, xl: 0 41px 0 0)
+    ));
     display: flex;
     align-items: center;
-    margin: 0 41px 0 0;
     @include e(link) {
       @include media((
-              font-size: (lg: 16px)
+              font-size: (lg-xl_1: 16px, xl: 18px)
       ));
     }
   }

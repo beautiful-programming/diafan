@@ -8,5 +8,7 @@ $input-placeholder: #dadada;
 $grey: #828282;
 
 $grid-width: (
-        width: (xs-md: 100%, md: 750px, lg: 992px, xl: 1196px)
+        width: (xs-md: 100%, md: 750px, lg: 992px, xl: 1196px),
+        margin: (lg: 0 auto),
+        padding: (xs-lg_1: 0 20px)
 );

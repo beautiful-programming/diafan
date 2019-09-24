@@ -12,8 +12,13 @@
   @include b(box) {
     width: 100%;
     padding: 67px 0 56px 0;
+    @include media((
+        padding: (xs-lg_1: 49px 0 65px 0)
+    ));
     @include e(wrapper) {
-      height: 300px;
+      @include media((
+          height: (xs-sm: 710px, sm-lg_1: 510px, lg: 300px)
+      ));
       width: 100%;
       overflow: hidden;
       position: relative;
@@ -22,6 +27,9 @@
   @include e(title) {
     width: 100%;
     text-align: center;
+    @include media((
+            font-size: (xs-lg_1: 20px)
+    ));
     font-size: 30px;
     color: #fff;
     text-transform: uppercase;
@@ -35,6 +43,9 @@
     transition: top .5s ease-out;
     @include b(links) {
       padding: 14px 0 0 0;
+      @include media((
+          padding: (xs-lg_1: 114px 0 0 0)
+      ));
       position: absolute;
       top: 0;
       left: 0;
@@ -79,6 +90,9 @@
       align-items: center;
       transition: top .5s ease-out .15s;
       @include b(form) {
+        @include media((
+            width: (xs-lg_1: 100%)
+        ));
         width: 60%;
         margin: 0 auto;
         text-align: center;
@@ -113,6 +127,9 @@
 
         @include e(submit) {
           margin: 20px auto 0 auto;
+          @include media((
+              width: (xs-lg_1: 100%)
+          ));
         }
       }
     }
@@ -120,6 +137,9 @@
   @include b(form) {
     position: absolute;
     padding: 14px 0 0 0;
+    @include media((
+        padding: (xs-lg_1: 21px 0 0 0)
+    ));
     width: 100%;
     height: 100%;
     top: 0;
@@ -157,8 +177,9 @@
         display: flex;
         justify-content: center;
         @include media((
-            width: (lg: 80%, xl: 60%)
+                width: (xs-lg_1: 100%, lg-xl_1: 80%, xl: 60%),
         ));
+
         flex-wrap: wrap;
         margin: 0 auto;
       }
@@ -175,15 +196,36 @@
         text-align: center;
         color: #fff;
         font-size: 20px;
+        @include media((
+                font-size: (xs-lg_1: 18px),
+                margin: (xs-lg_1: 0 0 114px 0)
+        ));
       }
     }
     @include b(radio) {
       position: relative;
+      text-align: center;
+      @include media((
+              width: (xs-sm_1: 100%, sm-lg_1: calc((100% - 10px) / 2))
+      ));
+      &:nth-child(2n) {
+        @include media((
+            margin-left: (sm-lg_1: 10px)
+        ));
+      }
       &:not(:last-child) {
+        @include media((
+                margin-right: (xs-lg_1: 0),
+        ));
         margin-right: 10px;
       }
+
       margin-bottom: 20px;
       @include e(label) {
+        @include media((
+            width: (xs-lg_1: 100%),
+                padding: (xs-lg_1: 0 5px)
+        ));
         padding: 0 20px;
         border-radius: 6px;
         cursor: pointer;
@@ -215,7 +257,7 @@
         transition: border-color .2s ease-in-out, color .15s ease-in-out, text-shadow .1s ease-in-out;
         @include m(error) {
           border-color: #953b39 !important;
-          color:  #953b39 !important;
+          color: #953b39 !important;
           text-shadow: none;
         }
       }
@@ -239,11 +281,14 @@
   @include b(dots) {
     position: absolute;
     @include media((
-    right: (lg: 42px, xl: 63px)
+            right: (lg-xl_1: 42px, xl: 63px),
+            left: (xs-lg_1: 50%),
+            transform: (xs-lg_1: translate(-50%, 0)),
+            top: (xs-lg_1: 160px)
     ));
     top: 50%;
     z-index: 999;
-    transform: translateY(-50%);
+    transform: translate(0, -50%);
     $grey-light: #4F4F4F;
     &:after {
       content: '';
@@ -251,7 +296,16 @@
       z-index: 1;
       top: 0;
       left: 50%;
-      transform: translateX(-50%);
+      @include media((
+          transform: (xs-lg_1: translate(0, -50%)),
+              top: (xs-lg_1:50%),
+              left: (xs-lg_1:0),
+              height: (xs-lg_1:0),
+              width: (xs-lg_1:100%),
+              border-left: (xs-lg_1:0),
+              border-top: (xs-lg_1:1.6px dashed $grey-light)
+      ));
+      transform: translate(-50%, 0);
       height: 100%;
       width: 0;
       border-left: 1.6px dashed $grey-light;
@@ -259,6 +313,9 @@
     @include b(list) {
       display: flex;
       flex-direction: column;
+      @include media((
+              flex-direction: (xs-lg_1: row),
+      ));
       @include reset('ul');
       @include e(item) {
         z-index: 2;
@@ -274,6 +331,9 @@
         color: #fff;
         transition: background .15s ease-in-out;
         &:not(:last-child) {
+          @include media((
+                  margin: (xs-lg_1: 0 20px 0 0)
+          ));
           margin: 0 0 20px 0;
         }
         @include m(active) {

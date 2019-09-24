@@ -1,8 +1,12 @@
 $breakpoints: (
         xl: 1226,
+        xl_1: 1225,
         lg: 1024,
+        lg_1: 1023,
         md: 768,
+        md_1: 767,
         sm: 576,
+        sm_1: 575,
         xs: 240
 ) !default;
 $media-direction: min !default;
@@ -180,15 +184,12 @@ $media-direction: min !default;
   } @else if $tag == 'ul' {
     list-style: none;
   } @else if $tag == 'a' {
-   text-decoration: none;
-  }
-  @else if $tag == 'input' {
+    text-decoration: none;
+  } @else if $tag == 'input' {
     outline: none;
-  }
-  @else if $tag == 'button' {
+  } @else if $tag == 'button' {
     outline: none;
-  }
-  @else {
+  } @else {
     @error "Unknown direction #{$tag}.";
   }
 }

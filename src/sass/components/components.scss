@@ -43,6 +43,10 @@
   font-weight: 700;
   font-size: 20px;
   color: #fff;
+  @include media((
+          padding: (xs-lg: 0 20px)
+  ));
+  display: inline-block;
   text-decoration: none;
   cursor: pointer;
   text-transform: uppercase;
@@ -65,13 +69,15 @@
 
 .c-btn-ghost {
   display: inline-block;
-  padding: 0 60px;
   line-height: 52px;
   height: 52px;
   background: transparent;
   transition: background .2s ease-in-out, color .2s ease-in-out;
   border: 4px solid #fff;
-  font-size: 30px;
+  @include media((
+      font-size: (xs-lg_1: 20px, lg-xl_1: 28px, xl: 30px),
+          padding: (xs-lg_1: 0 20px, lg-xl_1: 0 30px, xl: 0 60px)
+  ));
   text-decoration: none;
   font-weight: 700;
   color: #fff;

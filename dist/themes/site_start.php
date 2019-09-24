@@ -37,12 +37,30 @@ if (!defined("DIAFAN")) {
 <header class="main-header">
     <div class="top-line">
         <div class="top-line__wrapper">
+            <div class="top-line-menu">
+                <div class="top-line-menu__wrapper">
+                    <div class="top-line-menu__close" id="mobileMenuClose">
+                        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m12 9.5757l9.0736-9.0736c0.6695-0.66947 1.7549-0.66947 2.4244 0 0.6695 0.66948 0.6695 1.7549 0 2.4244l-9.0736 9.0735 9.0736 9.0736c0.6695 0.6695 0.6695 1.7549 0 2.4244s-1.7549 0.6695-2.4244 0l-9.0736-9.0736-9.0735 9.0736c-0.66947 0.6695-1.7549 0.6695-2.4244 0-0.66947-0.6695-0.66947-1.7549 0-2.4244l9.0736-9.0736-9.0736-9.0735c-0.66947-0.66947-0.66947-1.7549 0-2.4244 0.66948-0.66947 1.7549-0.66947 2.4244 0l9.0735 9.0736z" clip-rule="evenodd" fill="#FF7B15" fill-rule="evenodd"/>
+                        </svg>
+                    </div>
             <insert name="show_block" module="menu" id="1" template="top_line">
-                <div class="top-line__other">
+                <insert name="show_block" module="menu" id="3" template="top_line_m">
+                </div>
+                <div class="top-line-menu__burger" id="mobileMenuOpen">
+                    <svg fill="none" viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m1.6333 2h14.733c0.6259 0 1.1333-0.44772 1.1333-1 0-0.55228-0.5074-1-1.1333-1h-14.733c-0.62592 0-1.1333 0.44772-1.1333 1 0 0.55228 0.50741 1 1.1333 1zm0 6h14.733c0.6259 0 1.1333-0.44772 1.1333-1s-0.5074-1-1.1333-1h-14.733c-0.62592 0-1.1333 0.44772-1.1333 1s0.50741 1 1.1333 1zm14.733 6h-14.733c-0.62592 0-1.1333-0.4477-1.1333-1s0.50741-1 1.1333-1h14.733c0.6259 0 1.1333 0.4477 1.1333 1s-0.5074 1-1.1333 1z" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+                    </svg>
+                </div>
+            </div>
+                    <div class="top-line__other">
                     <div class="top-line-sign-in">
                         <a href="#" title="Войти в личный кабинет"
                            class="c-link top-line-sign-in__link"><span>Личный кабинет</span></a>
                     </div>
+                        <div class="top-line-phone">
+                            <insert name="show_block" module="site" id="8">
+                        </div>
                     <insert name="show_search" module="search" template="top" ajax="true">
                 </div>
         </div>
@@ -86,19 +104,19 @@ if (!defined("DIAFAN")) {
         <div class="advantages__wrapper">
             <h1 class="advantages__title">Лингвистический клуб<br>иностранных языков в Самаре</h1>
             <ul class="advantages-list">
-                <li class="advantages-list-item wow slideInLeft" data-wow-delay="1s">
+                <li class="advantages-list-item wow fadeInLeft" data-wow-delay="0.25s">
                     <h2 class="advantages-list-item__title">
                         <span class="advantages-list-item__secondary-text">Опыт более</span>
                         <span class="advantages-list-item__primary-text">13 лет</span>
                     </h2>
                 </li>
-                <li class="advantages-list-item  wow slideInUp" data-wow-delay="1s">
+                <li class="advantages-list-item  wow fadeInLeft" data-wow-delay="0.5s">
                     <h2 class="advantages-list-item__title">
                         <span class="advantages-list-item__secondary-text">Обучение</span>
                         <span class="advantages-list-item__primary-text">7 языкам</span>
                     </h2>
                 </li>
-                <li class="advantages-list-item wow slideInRight" data-wow-delay="1s">
+                <li class="advantages-list-item wow fadeInLeft" data-wow-delay="0.75s">
                     <h2 class="advantages-list-item__title">
                         <span class="advantages-list-item__secondary-text">Переводы с/на</span>
                         <span class="advantages-list-item__primary-text">30 языков</span>
@@ -179,6 +197,12 @@ if (!defined("DIAFAN")) {
             <h1 class="courses__title">Курсы иностранных языков</h1>
             <div class="courses-block">
                 <div class="courses-block-left-nav">
+                    <button class="courses-block-left-nav__btn-left" id="coursesLeftNavBtnLeft">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="courses-block-left-nav__btn-right" id="coursesLeftNavBtnRight">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                     <ul class="courses-block-left-nav-list">
                         <li class="courses-block-left-nav-list__item courses-block-left-nav-list__item--active"
                             data-course-nav-left="1">Английский
@@ -208,6 +232,7 @@ if (!defined("DIAFAN")) {
                     </div>
                     <div class="courses-block-main-content">
                         <ul class="courses-block-main-content-items">
+
                             <li class="courses-block-main-content-items-one courses-block-main-content-items-one--active"
                                 data-course-left="1" data-course-top="1">
                                 <div class="courses-block-main-content-items-one-info"><p

@@ -7,10 +7,18 @@
     width: 100%;
     margin: 0 auto;
     padding: 88px 0 0 0;
+    @include media((
+        padding: (xs-lg_1: 50px 0 0 0)
+    ));
+    position: relative;
   }
   @include e(title) {
+    @include media((
+            font-size: (xs-lg_1: 20px)
+    ));
     font-size: 30px;
     color: $dark-lighten;
+    text-transform: uppercase;
     font-weight: 700;
     width: 100%;
     text-align: center;
@@ -20,19 +28,70 @@
     display: flex;
     align-items: stretch;
 
-
     @include b(left-nav) {
       @include media((
-        margin: (lg: 0 52px 0 0, xl: 0 113px 0 0),
-              padding: (lg: 0 0 0 3%, xl: 0 0 0 18%)
+              margin: (lg-xl_1: 0 52px 0 0, xl: 0 113px 0 0),
+              padding: (xs-lg_1: 0 35px, lg-xl_1: 0 0 0 3%, xl: 0 0 0 10%),
+              position: (xs-lg_1: absolute),
+              top: (xs-578: 215px, 579-lg_1: 185px),
+              left: (xs-lg_1: 0),
+              width: (xs-lg_1: 100%)
       ));
+      @include e(btn-left) {
+        display: block;
+        @include media((
+                display: (lg: none)
+        ));
+        background: none;
+        outline: 0;
+        border: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 20px;
+        font-size: 20px;
+        color: $primary;
+      }
+      @include e(btn-right) {
+        display: block;
+        @include media((
+                display: (lg: none)
+        ));
+        background: none;
+        outline: 0;
+        border: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        right: 20px;
+        font-size: 20px;
+        color: $primary;
+      }
       @include b(list) {
+        @include media((
+                flex-direction: (xs-lg_1: row),
+                overflow: (xs-lg_1: hidden),
+                width: (xs-lg_1: 100%),
+                text-align: (xs-lg_1: center),
+                height: (xs-lg_1: 100px),
+        ));
+        position: relative;
         @include reset('ul');
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         text-align: right;
         @include e(item) {
+          @include media((
+                  width: (xs-lg_1: 100% !important),
+                  position: (xs-lg_1: absolute),
+                  left: (xs-lg_1: 0),
+                  opacity: (xs-lg_1: 0),
+                  color: (xs-lg_1: $primary),
+                  cursor: (xs-lg_1: auto),
+                  top: (xs-lg_1: 50%),
+                  transform: (xs-lg_1: translate(0, -50%)),
+          ));
           user-select: none;
           white-space: nowrap;
           line-height: 37px;
@@ -44,7 +103,7 @@
           border-color: transparent;
           border-style: solid;
           border-width: 0 0 0 .8px;
-          transition: color .1s ease-in-out, font-weight .1s ease-in-out;
+          transition: color .1s ease-in-out, font-weight .1s ease-in-out, opacity .3s ease-in-out;
           cursor: pointer;
           &:not(:last-child) {
             margin: 0 0 20px 0;
@@ -60,30 +119,47 @@
           }
           &:hover {
             color: $primary;
+
             &:after {
               background: $primary;
             }
           }
           @include m(active) {
+            @include media((
+                opacity: (xs-lg_1: 1),
+                    color: (lg: $primary),
+                    border-width: (lg: 0),
+                    cursor: (lg: auto),
+            ));
             font-weight: 800;
-            color: $primary;
-            cursor: auto;
-            border-width: 0;
             &:after {
-              background: $primary;
+              @include media((
+                  background: (lg: $primary)
+              ));
             }
           }
         }
       }
     }
     @include b(main) {
-flex: 1;
+      flex: 1;
       @include b(top-nav) {
-
+        @include media((
+                margin: (xs-lg_1: 0 0 100px 0)
+        ));
         @include b(list) {
           display: flex;
+          @include media((
+              flex-wrap: (xs-lg_1: wrap),
+                  justify-content: (xs-lg_1: center),
+          ));
           @include reset('ul');
           @include e(item) {
+            &:not(:last-child) {
+              @include media((
+                      margin: (xs-lg_1: 0 20px 16px 0)
+              ));
+            }
             white-space: nowrap;
             font-size: 18px;
             user-select: none;
@@ -97,10 +173,9 @@ flex: 1;
             border-width: 0 .57px 0 0;
             &:not(:last-child) {
               @include media((
-                margin: (lg: 0 24px 0 0, xl: 0 32px 0 0)
+                      margin: (lg-xl_1: 0 24px 0 0, xl: 0 32px 0 0)
               ));
             }
-
             &:after {
               content: '';
               position: absolute;
@@ -112,6 +187,7 @@ flex: 1;
             }
             &:hover {
               color: $primary;
+
               &:after {
                 background: $primary;
               }
@@ -135,6 +211,10 @@ flex: 1;
           width: 100%;
           position: relative;
           margin: 34px 0 0 0;
+          @include media((
+              margin: (xs-lg_1: 0),
+                  padding: (xs-lg_1: 0 20px)
+          ));
           @include b(one) {
             width: 100%;
             position: absolute;
@@ -154,11 +234,14 @@ flex: 1;
             }
 
             @include e(image) {
+              @include media((
+                      display: (xs-lg_1: none)
+              ));
               position: absolute;
               @include media((
-                width: (lg: 100%, xl: 65%),
-                      right:  (lg: -50%, xl: 0),
-                      background-position: (lg: left bottom, xl: left bottom)
+                      width: (lg-xl_1: 100%, xl: 65%),
+                      right: (lg-xl_1: -40%, xl: 0),
+                      background-position: (lg-xl_1: left bottom, xl: left bottom)
               ));
               bottom: 0;
               height: 100%;
@@ -170,9 +253,17 @@ flex: 1;
             }
             @include b(info) {
               width: 100%;
+              display: flex;
+              flex-direction: column;
               @include media((
-                padding: (lg: 0 35% 74px 0, xl: 0 65% 74px 0)
+                      padding: (xs-lg_1: 0 0 74px 0, lg-xl_1: 0 40% 74px 0, xl: 0 65% 74px 0),
+                      align-items: (lg: flex-start)
               ));
+              @include e(btn) {
+                @include media((
+                    margin: (xs-lg_1: 0 auto)
+                ));
+              }
               @include e(description) {
                 font-weight: 300;
                 color: #444444;
@@ -200,7 +291,7 @@ flex: 1;
                     color: $primary;
                     &:not(:last-child) {
                       @include media((
-                              margin: (lg-xl: 0 0 10px 0)
+                              margin: (lg: 0 0 10px 0)
                       ));
                     }
                   }

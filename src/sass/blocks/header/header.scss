@@ -4,13 +4,18 @@
   width: 100%;
   position: relative;
   background: #fff;
-  padding: 0 0 24px 0;
+  @include media((
+          padding: (xs-lg_1: 0, lg-xl_1: 0 0 5px 0, xl: 0 0 24px 0)
+  ));
   @include e(wrapper) {
     @include media($grid-width);
     margin: 0 auto;
     display: flex;
   }
   @include b(site) {
+    @include media((
+            display: (xs-lg_1: none)
+    ));
     flex: 1;
     display: flex;
     align-items: flex-end;
@@ -18,17 +23,19 @@
     @include e(name) {
       text-transform: uppercase;
       @include media((
-              font-size: (lg: 12px, xl: 14px),
-              font-weight: (lg: 400, xl: 300)
+              font-size: (lg-xl_1: 12px, xl: 14px),
+              font-weight: (lg-xl_1: 400, xl: 300),
       ));
       color: $dark-lighten;
       line-height: 47px;
-
     }
   }
   @include e(other) {
     display: flex;
     flex-direction: column;
+    @include media((
+            width: (xs-lg_1: 100%)
+    ));
   }
   @include b(info) {
     width: 100%;
@@ -36,7 +43,10 @@
     justify-content: flex-end;
     align-items: center;
     @include b(phones) {
-      padding: 21px 0 23px 0;
+      @include media((
+              display: (xs-lg_1: none),
+              padding: (lg-xl_1: 20px 0 10px 0, xl: 20px 0)
+      ));
       display: flex;
       @include b(item) {
         display: flex;
@@ -45,19 +55,19 @@
           text-align: right;
           color: $dark-lighten;
           @include media((
-                  font-size: (lg: 14px, xl: 16px)
+                  font-size: (lg-xl_1: 14px, xl: 16px)
           ));
         }
         &:first-child {
           @include media((
-                  margin: (lg: 0 37px 0 0, xl: 0 47px 0 0)
+                  margin: (xs-lg_1: 0 37px 0 0, lg-xl_1: 0 37px 0 0, xl: 0 47px 0 0)
           ));
         }
         @include e(number) {
           text-decoration: none;
           font-size: 20px;
           @include media((
-                  font-size: (lg: 18px, xl: 20px)
+                  font-size: (lg-xl_1: 18px, xl: 20px)
           ));
           font-weight: 700;
           color: #828282;
@@ -69,9 +79,12 @@
       }
     }
     @include b(social) {
+      @include media((
+              display: (xs-lg_1: none)
+      ));
       display: flex;
       @include media((
-              margin: (lg: 0 49px 0 0, xl: 0 59px 0 0)
+              margin: (lg-xl_1: 0 50px 0 0, xl: 0 60px 0 0)
       ));
 
       @include b(item) {
@@ -108,6 +121,9 @@
       }
     }
     @include b(links) {
+      @include media((
+              display: (xs-lg_1: none)
+      ));
       flex: 1;
       display: flex;
       justify-content: flex-start;
@@ -121,28 +137,40 @@
   @include b(controls) {
     display: flex;
     align-items: center;
+    @include media((
+        padding: (xs-lg_1: 20px 0),
+            width: (xs-lg_1: 100%),
+            justify-content: (xs-lg_1: flex-end)
+    ));
     @include e(btn) {
       @include media((
-              margin: (lg: 0 0 0 21px, xl: 0 0 0 30px),
-              width: (lg: 160px, xl: auto),
-              font-size: (lg: 16px, xl: 18px),
-              line-height: (lg: 1.5, xl: 47px)
+              margin: (xs-lg_1: 0, lg-xl_1: 0 0 0 10px, xl: 0 0 0 30px),
+              width: (lg-xl_1: 160px, xl: auto),
+              font-size: (xs-xl_1: 16px, xl: 18px),
+              line-height: (lg-xl_1: 23.5px, xl: 47px),
       ));
     }
     @include b(nav) {
+      z-index: 99999;
+      @include media((
+              display: (xs-lg_1: none)
+      ));
       @include b(list) {
         display: flex;
         align-items: center;
         @include reset('ul');
         margin: 0;
         padding: 0;
+
         @include b(item) {
           display: flex;
           user-select: none;
           align-items: center;
           @include reset();
           position: relative;
-          font-weight: 700;
+          @include media((
+              font-weight: (lg-xl_1: 400, xl: 700)
+          ));
           font-size: 18px;
           &:not(:last-child) {
             margin: 0 21px 0 0;
@@ -192,7 +220,7 @@
         transition: visibility .1s ease-in-out, opacity .3s ease-in-out;
         top: 100%;
         left: 0;
-        background: $dark-lighten-more;
+        background: #fff;
         flex: 1;
         @include reset('ul');
         margin: 0;
@@ -203,7 +231,6 @@
           white-space: nowrap;
           @include reset();
           position: relative;
-          font-weight: 700;
           font-size: 18px;
           &:not(:last-child) {
             margin: 0 0 7px 0;

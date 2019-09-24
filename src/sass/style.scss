@@ -14,6 +14,9 @@ body {
   font-size: 16px;
   line-height: 1.5;
   overflow-x: hidden;
+  &.no-scroll {
+    overflow-y: hidden;
+  }
 }
 
 button {
@@ -27,17 +30,17 @@ button {
 @import "blocks/header/header";
 @import "blocks/top-line/top-line";
 
-//slider
+////slider
 @import "blocks/slider/slider";
-
-// advantages
+//
+//// advantages
 @import "blocks/advantages/advantages";
-
-// learning-benefits
+//
+//// learning-benefits
 @import "blocks/learning-benefits/learning-benefits";
-
-// main-quiz
+//
+//// main-quiz
 @import "blocks/main-quiz/main-quiz";
-
-// courses
+//
+//// courses
 @import "blocks/courses/courses";

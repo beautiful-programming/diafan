@@ -2,6 +2,9 @@
 
 .learning-benefits {
   width: 100%;
+  @include media((
+      padding: (xs-lg_1: 41px 0 77px 0)
+  ));
   padding: 60px 0 75px 0;
   @include e(wrapper) {
     @include media($grid-width);
@@ -12,44 +15,65 @@
     text-align: center;
     color: $dark-lighten;
     font-size: 30px;
+    @include media((
+        font-size: (xs-lg_1: 20px, lg: 30px)
+    ));
     font-weight: 700;
+    @include media((
+        margin: (xs-lg_1: 0 0 42px 0)
+    ));
     margin: 0 0 52px 0;
     text-transform: uppercase;
-
   }
 
   @include b(list) {
     width: 100%;
     display: flex;
-    align-items: stretch;
-    flex-wrap: wrap;
     @include media((
-        padding: (lg: 0 15px, xl: 0 85px)
+            flex-direction: (xs-md_1: column),
+            align-items: (xs-md_1: flex-start),
+            flex-wrap: (md: wrap)
+    ));
+    @include media((
+        padding: (lg-xl_1: 0 15px, xl: 0 85px)
     ));
     @include b(item) {
+      @include media((
+              width: (xs-md_1: 100%, md-lg_1: calc((100% - 85px) / 2)),
+              flex-direction: (xs-md_1: row),
+      ));
       width: calc((100% - 170px) / 3);
       display: flex;
       flex-direction: column;
-      @include media((
-        margin: (lg: 0 85px 40px 0)
-      ));
+      &:not(:last-child) {
+        @include media((
+            margin: (xs-md_1: 0 0 42px 0, lg: 0 85px 40px 0)
+        ));
+      }
+      &:nth-child(odd) {
+        @include media((
+          margin: (md-lg_1: 0 85px 40px 0)
+        ))
+      }
       &:nth-child(3n+3) {
         @include media((
             margin: (lg: 0)
         ));
       }
-      opacity: 1;
-      @include m(hidden) {
-        opacity: 0;
-      }
       @include e(icon) {
         width: 60px;
         height: 60px;
+        min-height: 60px;
+        min-width: 60px;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
         margin: 0 0 18px 0;
+        @include media((
+            margin: (xs-md_1: 0 37px 0 0, md: 0 0 18px 0)
+        ));
       }
+
       @include e(description) {
         font-size: 18px;
         text-align: left;
